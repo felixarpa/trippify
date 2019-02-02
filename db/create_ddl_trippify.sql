@@ -78,10 +78,10 @@ CREATE TABLE trippify_car
 (
     id integer NOT NULL DEFAULT nextval('trippify_car_id_seq'::regclass),
     participant_id integer NOT NULL,
-    car_name character varying(50) COLLATE pg_catalog."default",
-    car_brand character varying(50) COLLATE pg_catalog."default",
-    car_model character varying(50) COLLATE pg_catalog."default",
-    car_available_seats integer,
+    name character varying(50) COLLATE pg_catalog."default",
+    brand character varying(50) COLLATE pg_catalog."default",
+    model character varying(50) COLLATE pg_catalog."default",
+    available_seats integer,
     CONSTRAINT trippify_car_pkey PRIMARY KEY (id),
     CONSTRAINT trippify_car_participant_fkey FOREIGN KEY (participant_id)
         REFERENCES trippify_participant (id) MATCH SIMPLE
