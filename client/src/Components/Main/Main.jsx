@@ -15,7 +15,7 @@ class Main extends Component {
   }
 
   join() {
-
+    window.location.href = `${window.location.origin}/join/`;
   }
 
   render() {
