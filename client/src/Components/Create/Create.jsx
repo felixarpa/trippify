@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { Box, Form, Text, FormField, Select, Button } from 'grommet';
+import { CURR } from '../../consts';
 
-const OPTIONS = ['EUR (€)', 'GBP (£)', 'USD ($)'];
+const OPTIONS = CURR;
 
 class Create extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: [], options: OPTIONS };
+    this.state = {
+      value: [ 'Select Currency' ],
+      options: OPTIONS
+    };
 
     this.submit = this.submit.bind(this);
   }
@@ -16,8 +20,8 @@ class Create extends Component {
     // Post these values:
     // - { title, description, destination }: event.values
     // - currency: this.state.value
-    const tripCode = 'ABC123';
-    window.location.href = `${window.location.origin}/trip/${tripCode}`;
+    const tripId = 'ABC123';
+    window.location.href = `${window.location.origin}/trip/${tripId}`;
   }
 
   render() {
