@@ -1,0 +1,63 @@
+version: '3'
+services:
+
+  # API
+  trippify-api-app:
+    container_name: trippify-api-app
+    build:
+      context: api
+      dockerfile: Dockerfile
+    networks:
+      - trippify
+    ports:
+      - 9081:9081
+      - 3081:3081
+    restart: always
+    depends_on:
+      - trippify-api-nginx
+      # - trippify-db
+  trippify-api-nginx:
+    container_name: trippify-api-nginx
+    build:
+      context: api
+      dockerfile: Dockerfile.nginx
+    networks:
+      - trippify
+    ports:
+      - 8081:8081
+    restart: always
+
+
+  # Client
+  # trippify-client-app:
+  #   container_name: trippify-client-app
+  #   build:
+  #     context: client
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - './trippify-client:/usr/src/app'
+  #     - '/usr/src/app/node_modules'
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     - NODE_ENV=development
+  #   restart: always
+
+
+  # DB
+  # trippify-db:
+  #   container_name: trippify-db
+  #   build:
+  #     context: db
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   networks:
+  #     - trippify
+  #   ports:
+  #     - 5432:5432
+
+# Trippify network
+networks:
+  trippify:
+    external:
+      name: trippify
