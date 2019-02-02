@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 services:
 
   # API
@@ -29,19 +29,19 @@ services:
 
 
   # Client
-  # trippify-client-app:
-  #   container_name: trippify-client-app
-  #   build:
-  #     context: client
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - './trippify-client:/usr/src/app'
-  #     - '/usr/src/app/node_modules'
-  #   ports:
-  #     - 3000:3000
-  #   environment:
-  #     - NODE_ENV=development
-  #   restart: always
+  trippify-client-app:
+    container_name: trippify-client-app
+    build:
+      context: client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=development
+    restart: always
 
 
   # DB
