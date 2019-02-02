@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './Components/Main/Main';
 import Create from './Components/Create/Create';
+import Traveler from './Components/Traveler/Traveler';
 
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
       <Router>
         <div>
           <Route path='/' exact component={Main} />
-          <Route path='/create/' exact component={Create} />
+          <Route path='/create/' component={Create} />
+          <Route path='/trip/:tripId' component={Traveler} />
         </div>
       </Router>
     );
