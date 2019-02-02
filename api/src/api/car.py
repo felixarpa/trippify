@@ -9,4 +9,4 @@ def get(car_id):
     if car:
         return jsonify(error=False, response=car.serialize()), 200
     else:
-        return jsonify(error=True, message='No car found with {} as id.'.format(car_id)), 200
+        return jsonify(error=True, message='No car found with {} as id.'.format(car_id)), 400
