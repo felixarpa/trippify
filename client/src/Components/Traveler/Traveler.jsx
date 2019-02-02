@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Box, Text, Form, CheckBox, FormField, Select, Button, RangeInput } from 'grommet';
-import LogoHeader from '../Headers/LogoHeader';
 import FormHeader from '../Headers/FormHeader';
+import LogoHeader from '../Headers/LogoHeader';
 import { GENRES } from '../../consts';
+import './Traveler.css';
+import '../Create/Create.css';
 
 const OPTIONS = GENRES;
 
@@ -68,7 +70,7 @@ class Traveler extends Component {
     if (isDriver) {
       const text = `How many seats dos your car have? ${seats}`;
       car = (
-        <Box>
+        <Box margin={{ bottom: 'small', top: 'medium' }}>
           <Text>{text}</Text>
           <RangeInput
             value={seats}
@@ -82,40 +84,73 @@ class Traveler extends Component {
     }
 
     return (
-      <Box fill align='center' justify='center'>
-        <Box width='medium'>
-          <LogoHeader />
-          <FormHeader />
-          <Form onSubmit={this.submit}>
-            <FormField
-              name='origin'
-              label='Origin'
-              required
-            />
-            <FormField name='Music genre'>
-              <Select
-                multiple={false}
-                selected={selected}
-                value={music}
-                placeholder='Select your favorite music genre'
-                onChange={this.selectMusic}
-                onSearch={this.searchMusic}
-                options={options}
-              />
-              <CheckBox
-                checked={isDriver}
-                label='Do you have a car?'
-                onChange={this.checkDriver}
-              />
-              {car}
-            </FormField>
-            <Box direction='row' justify='between' margin={{ top: 'medium' }}>
-              <Button label='Cancel' />
-              <Button type='submit' label='Update' primary />
-            </Box>
-          </Form>
+
+      <Box
+      direction='column'
+      >
+      
+        <Box margin='0' className='header'>
+          <LogoHeader/>
         </Box>
+        
+        <Box className='formInput' fill align='center' justify='center' background='light-1'>
+          <Box fill align='center' justify='center'>
+            <Box width='large'>
+              <FormHeader />
+              <Form onSubmit={this.submit}>
+
+                <FormField
+                  className='input-form'
+                  name='name'
+                  label='Name'
+                  placeholder='How people call you'
+                  required
+                />
+                <Box className='margin'/>
+                <FormField
+                  className='input-form'
+                  name='origin'
+                  label='Origin'
+                  placeholder='Place from origin'
+                  required
+                />
+                <Box className='margin'/>
+                <FormField name='Music genre' label='Taste of music'>
+                  <Select
+                    className='input-form'
+                    multiple={false}
+                    selected={selected}
+                    value={music}
+                    placeholder='Select your favorite music genre'
+                    onChange={this.selectMusic}
+                    onSearch={this.searchMusic}
+                    options={options}
+                  />
+                  <Box className='margin'/>
+                  <Box className='input-form' margin={{ bottom: 'small' }}>
+                    <CheckBox
+                      className='input-form'
+                      checked={isDriver}
+                      label='Do you have a car?'
+                      onChange={this.checkDriver}
+                    />
+                  </Box>
+
+                  {car}
+                </FormField>
+                <Box direction='row' justify='between' margin={{ top: 'large' }}>
+                  <Button label='Cancel' color='accent-1'  />
+                  <Button type='submit' label='Update' primary color='accent-1' />
+                </Box>
+              </Form>
+            </Box>
+          </Box>
+        </Box>
+
       </Box>
+   
+    
+    
     );
   }
 }

@@ -1,0 +1,16 @@
+.title-create{
+    font-size: 1.5em;
+    color:black;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+
+.logo {
+    color:#69D9B8;
+    font-family: 'Righteous', cursive;
+    font-size: 2em;
+    margin: 0;
+    padding: 8px;
+}

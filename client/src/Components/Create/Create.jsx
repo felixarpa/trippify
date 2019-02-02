@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Box, Form, Text, FormField, Select, Button } from 'grommet';
+import { Box, Form, FormField, Select, Button } from 'grommet';
 import './Create.css';
 import '../Base/Base.css';
-import Logo from '../Logo/Logo';
+import LogoHeader from '../Headers/LogoHeader';
+import FormHeader from '../Headers/FormHeader';
 import { CURR } from '../../consts';
 
 const OPTIONS = CURR;
@@ -55,13 +56,11 @@ class Create extends Component {
         <Box
         margin='0'
         className='header'>
-          <Logo/>
+          <LogoHeader/>
         </Box>
         
           <Box className='formInput' fill align='center' justify='center' background='light-1'>
-            <Box>
-                <Text className='title-create'>Fill the form for starting a new adventure!</Text>
-            </Box>
+            <FormHeader/>
             <Box width='large'>
               <Form onSubmit={this.submit}>
                 <FormField
@@ -104,12 +103,10 @@ class Create extends Component {
                 </FormField>
                 <Box direction='row' justify='between' margin={{ top: 'large' }}>
                   <Button 
-                    className='white-text-button'
                     label='Cancel' 
                     color='accent-1'  
                   />
                   <Button 
-                    className='white-text-button'
                     type='submit' 
                     label='Update' 
                     color='accent-1' 
