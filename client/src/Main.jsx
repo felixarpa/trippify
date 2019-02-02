@@ -11,7 +11,6 @@ class Main extends Component {
   }
 
   create() {
-    console.log(window.location);
     window.location.href = `${window.location.origin}/create/`;
   }
 
