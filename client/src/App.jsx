@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Main from './Main';
-import Create from './Create';
+import Main from './Components/Main/Main';
+import Create from './Components/Create/Create';
+
 
 class App extends Component {
   render() {
