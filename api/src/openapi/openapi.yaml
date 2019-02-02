@@ -6,7 +6,7 @@ info:
   title: Trippify API
 
 servers:
-  - url: http://localhost:8101
+  - url: http://localhost:8081
     description: Localhost endpoint.
 
 tags:
