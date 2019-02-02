@@ -1,0 +1,256 @@
+openapi: '3.0.0'
+
+info:
+  description: The best way to plan your trips. Build in Royal Hackaway 2019.
+  version: '1.0'
+  title: Trippify API
+
+servers:
+  - url: http://localhost:8101
+    description: Localhost endpoint.
+
+tags:
+  - name: trip
+    description: endpoint for managing trips.
+  - name: participant
+    description: endpoint for managing participants.
+  - name: car
+    description: endpoint for managing cars.
+  - name: location
+    description: endpoint for managing location stuff.
+
+paths:
+  /trip:
+    get:
+      tags:
+        - trip
+      summary: Retrieve a trip
+      description: Invoke this endpoint to retrieve information of a given trip.
+      operationId: src.api.trip.get
+      parameters:
+        - name: trip_id
+          in: query
+          description: Specifies the trip to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+    post:
+      tags:
+        - trip
+      summary: Create a trip
+      description: Invoke this endpoint to create a trip given its information.
+      operationId: src.api.trip.post
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TripBody"
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /participant:
+    get:
+      tags:
+        - participant
+      summary: Retrieve a participant
+      description: Invoke this endpoint to retrieve information of a given participant.
+      operationId: src.api.participant.get
+      parameters:
+        - name: participant_id
+          in: query
+          description: Specifies the participant to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+    post:
+      tags:
+        - participant
+      summary: Create a participant
+      description: Invoke this endpoint to create a participant given its information.
+      operationId: src.api.participant.post
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ParticipantBody"
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /car:
+    get:
+      tags:
+        - car
+      summary: Retrieve a car
+      description: Invoke this endpoint to retrieve information of a given car.
+      operationId: src.api.car.get
+      parameters:
+        - name: car_id
+          in: query
+          description: Specifies the car to retrieve.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /location/verify:
+    get:
+      tags:
+        - location
+      summary: Verify an string location existence
+      description: Invoke this endpoint to get the verification for a given string location.
+      operationId: src.api.location.verify_get
+      parameters:
+        - name: location
+          in: query
+          description: Specifies the string location.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+
+components:
+
+  schemas:
+
+    APIResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: Whether or not the request was successfully processed or not.
+        message:
+          type: string
+          description: Error message if the request was unsuccessful.
+        response:
+          type: object
+          description: Contains the response data if the request was successful.
+
+    TripBody:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Trip title.
+          maxLength: 50
+        description:
+          type: string
+          description: Trip description.
+          maxLength: 500
+        destination:
+          type: string
+          description: Trip destination.
+          maxLength: 500
+        currency:
+          type: string
+          description: Trip currency.
+          maxLength: 10
+
+    ParticipantBody:
+      type: object
+      properties:
+        trip_id:
+          type: string
+          description: Trip identifier.
+        origin:
+          type: string
+          description: Participant origin.
+          maxLength: 500
+        music_genre:
+          type: string
+          description: Participant music genre.
+          maxLength: 50
+        car_name:
+          type: string
+          description: (optional) Participant car name.
+          maxLength: 50
+        car_brand:
+          type: string
+          description: (optional) Participant car brand.
+          maxLength: 50
+        car_model:
+          type: string
+          description: (optional) Participant car model.
+          maxLength: 50
