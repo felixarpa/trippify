@@ -20,9 +20,10 @@ class Car(Base):
     def serialize(self):
         return dict(
             id=self.id,
-            trip_id=self.trip_id,
+            participant_id=self.participant_id,
             name=self.name,
-            origin=self.origin,
-            music_genre=self.music_genre,
-            trip=self.trip.serialize()
+            model=self.model,
+            brand=self.brand,
+            available_seats=self.available_seats,
+            participant=self.participant.serialize()
         )
