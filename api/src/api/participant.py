@@ -60,3 +60,12 @@ def post():
     except Exception as e:
         log.error('Unexpected error in POST/participant: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
+
+
+def trip_get(trip_id):
+    try:
+        participants = db_session().query(Participant).filter_by(trip_id=trip_id).all()
+        return jsonify(error=False, response=[participant.serialize() for participant in participants]), 200
+    except Exception as e:
+        log.error('Unexpected error in GET/participant/trip: {}'.format(e))
+        return jsonify(error=True, message='Unexpected error.'), 400
