@@ -13,7 +13,7 @@ class Traveler extends Component {
     this.tripId = props.match.params.tripId;
 
     this.state = {
-      music: [ 'Music genre' ],
+      music: [],
       options: OPTIONS,
       isDriver: false,
       seats: 1
@@ -64,11 +64,12 @@ class Traveler extends Component {
       seats
     } = this.state;
 
-    let car = (<div/>)
+    let car = (<Box/>);
     if (isDriver) {
+      const text = `How many seats dos your car have? ${seats}`;
       car = (
         <Box>
-          <Text>{`How many seats dos your car have? ${seats}`}</Text>
+          <Text>{text}</Text>
           <RangeInput
             value={seats}
             min={1}
@@ -96,6 +97,7 @@ class Traveler extends Component {
                 multiple={false}
                 selected={selected}
                 value={music}
+                placeholder='Select your favorite music genre'
                 onChange={this.selectMusic}
                 onSearch={this.searchMusic}
                 options={options}
