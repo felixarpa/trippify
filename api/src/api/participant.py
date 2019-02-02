@@ -9,7 +9,7 @@ def get(participant_id):
     if participant:
         return jsonify(error=False, response=participant.serialize()), 200
     else:
-        return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 200
+        return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
 
 
 def post():
