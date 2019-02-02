@@ -234,6 +234,10 @@ components:
         trip_id:
           type: string
           description: Trip identifier.
+        name:
+          type: string
+          description: Participant name.
+          maxLength: 50
         origin:
           type: string
           description: Participant origin.

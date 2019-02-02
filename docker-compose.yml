@@ -3,6 +3,7 @@ services:
 
   # API
   trippify-api-app:
+    image: trippify-api-app
     container_name: trippify-api-app
     build:
       context: api
@@ -15,8 +16,9 @@ services:
     restart: always
     depends_on:
       - trippify-api-nginx
-      # - trippify-db
+      - trippify-db
   trippify-api-nginx:
+    image: trippify-api-nginx
     container_name: trippify-api-nginx
     build:
       context: api
@@ -45,16 +47,17 @@ services:
 
 
   # DB
-  # trippify-db:
-  #   container_name: trippify-db
-  #   build:
-  #     context: db
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   networks:
-  #     - trippify
-  #   ports:
-  #     - 5432:5432
+  trippify-db:
+    image: trippify-db
+    container_name: trippify-db
+    build:
+      context: db
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - trippify
+    ports:
+      - 5432:5432
 
 # Trippify network
 networks:
