@@ -13,4 +13,4 @@ def get(trip_id):
 
 
 def post():
-    pass
+    return jsonify(error=True, message='Functionality no available, yet.'), 200
