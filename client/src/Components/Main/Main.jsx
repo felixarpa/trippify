@@ -21,6 +21,7 @@ class Main extends Component {
   render() {
     return (
       <Grid
+        className='mainGrid'
         columns={['fill']}
         rows={['medium', 'small']}
         gap='none'
@@ -36,6 +37,7 @@ class Main extends Component {
           </h2>
           <h3>Please, select your requests:</h3>
         </Box>
+        
         <Box 
           direction="row"
           fill='horizontal'

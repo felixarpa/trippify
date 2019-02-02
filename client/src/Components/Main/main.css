@@ -4,6 +4,11 @@
 
 General components
 **/  
+
+.mainGrid {
+    padding: 5rem;
+}
+
 h1 {
     font-size: 6em;
     margin: 0;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Box, Form, Text, FormField, Select, Button } from 'grommet';
-
+import './Create.css';
+import '../Base/Base.css';
+import Logo from '../Logo/Logo';
 const OPTIONS = ['EUR (€)', 'GBP (£)', 'USD ($)'];
 
 class Create extends Component {
@@ -24,54 +26,87 @@ class Create extends Component {
     const { options, selected, value } = this.state;
 
     return (
-      <Box fill align="center" justify="center">
-        <Box width="medium">
-          <Box>
-            <Text>LOGO</Text>
-          </Box>
-          <Box>
-            <Text>Fill the form for starting a new adventure</Text>
-          </Box>
-          <Form onSubmit={this.submit}>
-            <FormField
-              name="title"
-              label="Title"
-              required
-            />
-            <FormField
-              name="description"
-              label="Description"
-              required
-            />
-            <FormField
-              name="destination"
-              label="Destination"
-              required
-            />
-            <FormField name="currency">
-              <Select
-                multiple={false}
-                selected={selected}
-                value={value}
-                onSearch={(searchText) => {
-                  const regexp = new RegExp(searchText, 'i');
-                  this.setState({ options: OPTIONS.filter(o => o.match(regexp)) });
-                }}
-                onChange={event => this.setState({
-                  value: event.value,
-                  selected: event.selected,
-                  options: OPTIONS,
-                })}
-                options={options}
-              />
-            </FormField>
-            <Box direction="row" justify="between" margin={{ top: "medium" }}>
-              <Button label="Cancel" />
-              <Button type="submit" label="Update" primary />
-            </Box>
-          </Form>
+
+      <Box
+      direction="column"
+      >
+      
+        <Box
+        margin='0'
+        className='header'>
+          <Logo/>
         </Box>
+        
+          <Box className='formInput' fill align="center" justify="center" background='light-1'>
+            <Box>
+                <Text className='title-create'>Fill the form for starting a new adventure!</Text>
+            </Box>
+            <Box width="large">
+              <Form onSubmit={this.submit}>
+                <FormField
+                  className='input-form'
+                  name="title"
+                  label="Title"
+                  placeholder='Envent name'
+                  required
+                />
+                <Box className='margin'/>
+                <FormField
+                 className='input-form'
+                  name="description"
+                  label="Description"
+                  placeholder='Write something about the event'
+                  required
+                />
+                <Box className='margin'/>
+                <FormField
+                  className='input-form'
+                  name="destination"
+                  label="Destination"
+                  placeholder='Place of your destination'
+                  required
+                />
+                <Box className='margin'/>
+                <FormField 
+                className='input-form'
+                name="currency"
+                label="Currency"
+                >
+                  <Select
+                    multiple={false}
+                    selected={selected}
+                    value={value}
+                    placeholder='Select your currency'
+                    onSearch={(searchText) => {
+                      const regexp = new RegExp(searchText, 'i');
+                      this.setState({ options: OPTIONS.filter(o => o.match(regexp)) });
+                    }}
+                    onChange={event => this.setState({
+                      value: event.value,
+                      selected: event.selected,
+                      options: OPTIONS,
+                    })}
+                    options={options}
+                  />
+                </FormField>
+                <Box direction="row" justify="between" margin={{ top: "large" }}>
+                  <Button 
+                    className='white-text-button'
+                    label="Cancel" 
+                    color='accent-1'  
+                  />
+                  <Button 
+                   className='white-text-button'
+                    type="submit" 
+                    label="Update" 
+                    color='accent-1' 
+                    primary />
+                </Box>
+              </Form>
+            </Box>
+          </Box>
       </Box>
+      
     );
   }
 }
