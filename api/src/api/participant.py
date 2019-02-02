@@ -35,7 +35,7 @@ def post():
 
     if participant.id:
         car_parameters = ['car_name', 'car_brand', 'car_model', 'car_available_seats']
-        if all(x in body for x in car_parameters):
+        if all(x in body and body[x] for x in car_parameters):
             car = Car(
                 participant_id=participant.id,
                 name=body['car_name'],
