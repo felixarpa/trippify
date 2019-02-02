@@ -16,7 +16,6 @@ services:
     restart: always
     depends_on:
       - trippify-api-nginx
-      - trippify-db
   trippify-api-nginx:
     image: trippify-api-nginx
     container_name: trippify-api-nginx
