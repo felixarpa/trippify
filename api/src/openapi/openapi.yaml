@@ -232,7 +232,7 @@ components:
       type: object
       properties:
         trip_id:
-          type: string
+          type: integer
           description: Trip identifier.
         name:
           type: string
