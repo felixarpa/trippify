@@ -254,3 +254,7 @@ components:
           type: string
           description: (optional) Participant car model.
           maxLength: 50
+        car_available_seats:
+          type: integer
+          description: (optional) Participant car available seats.
+          minimum: 1
