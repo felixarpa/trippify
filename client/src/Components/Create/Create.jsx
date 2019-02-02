@@ -14,7 +14,7 @@ class Create extends Component {
     super(props);
 
     this.state = {
-      value: [],
+      value: '',
       options: OPTIONS
     };
 
@@ -26,7 +26,6 @@ class Create extends Component {
   selectCurrency(event) {
     this.setState({
       value: event.value,
-      selected: event.selected,
       options: OPTIONS
     });
   }
@@ -60,7 +59,7 @@ class Create extends Component {
   }
 
   render() {
-    const { options, selected, value } = this.state;
+    const { options, value } = this.state;
 
     return (
 
@@ -110,7 +109,6 @@ class Create extends Component {
                   label='Currency'>
                   <Select
                     multiple={false}
-                    selected={selected}
                     value={value}
                     placeholder='Select your currency'
                     onChange={this.selectCurrency}
