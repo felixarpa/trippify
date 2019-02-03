@@ -9,6 +9,12 @@ class Join extends Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
+    this.invite = this.invite.bind(this);
+
+    this.state = {
+      invited: false,
+      successful: ''
+    }
   }
 
   submit(event) {
@@ -23,7 +29,31 @@ class Join extends Component {
       }).catch(error => alert('Service unavailable right now. Please, try again later.'));
   }
 
+  invite(event) {
+    const nTelephone = event.value.telephone;
+    axios.get(`${API}/trip?trip_id=${nTelephone}`)
+      .then((response) => {
+        if (response.data.error) {
+          alert(`Error sending the message`);
+        } else {
+
+          let successful = (
+                <Text>
+                Your invitation was sended sucessfully
+                </Text>
+          );
+          this.setState({
+              invited: true,
+              successful: successful
+          });
+
+        }
+      }).catch(error => alert('Service unavailable right now. Please, try again later.'));
+  }
+
   render() {
+
+
     return (
       <Box direction='column'>
         <Box
@@ -67,15 +97,15 @@ class Join extends Component {
           <Box background='#3B5479' pad='1.5px' width='large'></Box>
           <Box className='margin'/>
           <Box width='large'>
-            <Box className='invite'
-                  width='medium'
-                  direction='row'
-                  border={{ color: 'accent-1', size: 'small' }}
-                  margin={{top:'small', bottom:'large'}}
-                  pad="small" 
-                  round='small'
-                  align='right'>
-                <Box>
+          <Box  className='invite'
+              width='medium'
+              direction='row'
+              border={{ color: 'accent-1', size: 'small' }}
+              margin={{top:'small', bottom:'large'}}
+              pad="small" 
+              round='small'
+              align='right'>
+                {this.state.successful}
                 <Form onSubmit={this.invite}>
                   <FormField
                         className='input-form'
@@ -83,19 +113,19 @@ class Join extends Component {
                         label='Do you want to share with someone?'
                         placeholder='Telephone of a friend'
                       />
-                </Form>
-              </Box>
 
-              <Box>
-                <Button 
-                    className='white-text-button'
-                    label='Invite' 
-                    color='accent-1'
-                    width='small'
-                    pad='0'
-                    primary
-                  />
-              </Box>
+                  <Box>
+                    <Button 
+                        className='white-text-button'
+                        type='submit' 
+                        label='Invite' 
+                        color='accent-1'
+                        width='small'
+                        pad='0'
+                        primary
+                      />
+                  </Box>
+                </Form>
             </Box>
           </Box>
         </Box>
