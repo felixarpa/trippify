@@ -6,6 +6,10 @@ TRIPPIFY_DB_PORT = 5432
 
 MAPS_GEO_CODING_API_KEY = 'AIzaSyBUl98DdV0U05pu7spTcP-RIB_qoCkNcYU'
 
+HERE_APP_ID = 'm7AG9dmM8HNO5ZnJWRVO'
+HERE_APP_CODE = '2mCmRml-o_e3-uZuD_Z62A'
+HERE_GEO_CODER_URL = 'https://geocoder.api.here.com/6.2/geocode.json'
+
 SPOTIFY_API_URL = 'https://api.spotify.com/v1/recommendations'
 SPOTIFY_API_LOGIN = 'https://accounts.spotify.com/api/token'
 SPOTIFY_API_AUTH = 'MThlMGY2ZDNhODE4NDAwODgyYjAxMWE2YTYxZWI0Y2E6N2ExZjg2MjU2NGJiNDExNmIwOTJhZGI5NmUyYTcxYTg='
@@ -18,6 +22,9 @@ __all__ = [
     'TRIPPIFY_DB_HOST',
     'TRIPPIFY_DB_PORT',
     'MAPS_GEO_CODING_API_KEY',
+    'HERE_APP_ID',
+    'HERE_APP_CODE',
+    'HERE_GEO_CODER_URL',
     'TRIPPIFY_DB_PORT',
     'SPOTIFY_API_URL',
     'SPOTIFY_API_LOGIN',

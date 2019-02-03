@@ -3,8 +3,15 @@ import googlemaps
 from src import *
 
 
-def create_client(api_key):
+def __create_client(api_key):
     return googlemaps.Client(key=api_key)
 
 
-maps_geo_coding_client = create_client(MAPS_GEO_CODING_API_KEY)
+def get_coordinates(location):
+    response = maps_geo_coding_client.geocode(location)
+    if 'geometry' in response and 'location' in response['geometry']:
+        return response['geometry']['location']
+    return None
+
+
+maps_geo_coding_client = __create_client(MAPS_GEO_CODING_API_KEY)
