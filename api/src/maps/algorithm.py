@@ -1,3 +1,5 @@
+import math
+
 from sqlalchemy import not_
 
 from src.db.sqlalchemy import db_session
@@ -29,17 +31,50 @@ def _compute_distances(trip_id):
     return distances
 
 
-def _sort_by_value(distances):
+def __set_group(groups, participant_dict, available_seats, participant_to_add):
+    for part in participant_dict:
+        driver_id = part[0]
+        if len(groups[driver_id]) + 1 <= available_seats[driver_id] and part[1] != math.inf:
+            groups[driver_id][participant_to_add] = part[1]
+            return
+
+
+def _group_by_driver(distances, trip_id):
+    groups = {}
     for key in distances.keys():
-        distances[key] = sorted(distances[key].items(), key=lambda kv: kv[1])
-    return distances
+        groups[key] = {}
+
+    participants = db_session().query(Participant).filter(Participant.trip_id == trip_id).all()
+    cars = db_session().query(Car).filter(
+        Car.participant_id == Participant.id).filter(
+        Participant.trip_id == trip_id).all()
+
+    available_seats = {}
+    for car in cars:
+        available_seats[car.participant_id] = car.available_seats
+
+    for participant in participants:
+        participant_dict = {}
+        for key, value in distances.items():
+            participant_dict[key] = math.inf if participant.id not in value else value[participant.id]
+        participant_dict = sorted(participant_dict.items(), key=lambda kv: kv[1])
+        __set_group(groups, participant_dict, available_seats, participant.id)
+
+    return groups
+
+
+def _sort_by_value(groups):
+    for key in groups.keys():
+        groups[key] = sorted(groups[key].items(), key=lambda kv: kv[1])
+    return groups
 
 
 def update_routes(trip_id):
     try:
         distances = _compute_distances(trip_id)
-        distances = _sort_by_value(distances)
-        return distances
+        groups = _group_by_driver(distances, trip_id)
+        groups = _sort_by_value(groups)
+        return groups
     except Exception as e:
         log.error('Unexpected error updating routes: {}'.format(e))
         return None
