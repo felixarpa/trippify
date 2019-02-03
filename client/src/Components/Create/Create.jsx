@@ -46,7 +46,6 @@ class Create extends Component {
         currency: currency
       })
       .then((response) => {
-        console.log(response.data);
         const tripId = response.data.response.trip_id;
         window.location.href = `${window.location.origin}/trip/${tripId}`;
       })
@@ -123,7 +122,7 @@ class Create extends Component {
                   />
                   <Button 
                     type='submit' 
-                    label='Update' 
+                    label='Submit' 
                     color='accent-1' 
                     primary />
                 </Box>

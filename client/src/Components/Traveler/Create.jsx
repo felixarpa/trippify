@@ -50,11 +50,32 @@ class Create extends Component {
   }
 
   submit(event) {
-    console.log(event.value);
+    const { name, origin, carName } = event.value;
+    const { music, seats, tripId, isDriver } = this.state;
+    axios.post(`${API}/participant`, {
+      'car_available_seats': isDriver ? parseInt(seats) : 1,
+      'car_brand': '',
+      'car_model': '',
+      'car_name': carName,
+      'music_genre': music,
+      'name': name,
+      'origin': origin,
+      'trip_id': parseInt(tripId)
+    })
+      .then((response) => {
+        const userId = response.data.response.participant_id;
+        window.location.href = `${window.location.origin}/trip/${tripId}/${userId}/`;
+      })
+      .catch((error) => {
+        let message = 'Service unavailable right now. Please, try again later.';
+        if (error.response.status === 400) {
+          message = 'Invalid resquest';
+        }
+        alert(message);
+      });
   }
 
   cancel(event) {
-    console.log(this.state.tripId);
     window.location.href = `${window.location.origin}/trip/${this.state.tripId}`
   }
 
@@ -80,6 +101,13 @@ class Create extends Component {
             step={1}
             onChange={this.changeSeats}
           />
+          <FormField
+            className='input-form'
+            name='carName'
+            label='Car'
+            placeholder='Give a name to your car'
+            required
+          />
         </Box>
       );
     }
@@ -92,7 +120,6 @@ class Create extends Component {
             <Box width='large'>
               <FormHeader />
               <Form onSubmit={this.submit}>
-
                 <FormField
                   className='input-form'
                   name='name'
