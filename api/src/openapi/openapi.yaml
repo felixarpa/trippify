@@ -279,6 +279,35 @@ paths:
                 type: string
                 description: Error description.
 
+  /share:
+    get:
+      tags:
+        - share
+      summary: Share the app to an specific phone number
+      description: Invoke this endpoint to send Trippify information to a given phone number through a SMS.
+      operationId: src.api.share.get
+      parameters:
+        - name: phone_number
+          in: query
+          description: Specifies the phone number.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
 
 components:
 
