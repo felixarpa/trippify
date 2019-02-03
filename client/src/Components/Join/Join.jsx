@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Form, Text, FormField, Button } from 'grommet';
-import Logo from '../Logo/Logo';
+import LogoHeader from '../Headers/LogoHeader';
 import axios from 'axios';
 import { API } from '../../consts';
 
@@ -28,7 +28,7 @@ class Join extends Component {
         <Box
           margin='0'
           className='header'>
-          <Logo/>
+          <LogoHeader/>
         </Box>
         <Box className='formInput' fill align='center' justify='center' background='light-1'>
           <Box>
