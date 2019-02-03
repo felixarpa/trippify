@@ -130,16 +130,20 @@ ALTER TABLE trippify_car
 -- Insert values
 insert into trippify_trip values (default, 'Royal Hackaway 2019', 'Best hackathon ever', 'Windsor Building, University in Egham, England', 'EUR');
 
-insert into trippify_participant values (default, 1, default, 'Bernat', 'Charing Cross Station, London, UK', 'rock');
-insert into trippify_participant values (default, 1, default, 'Albert', 'Camden Town, London, UK', 'chill');
-insert into trippify_participant values (default, 1, default, 'Felix', 'Liverpool Street, London, UK', 'indie');
-insert into trippify_participant values (default, 1, default, 'Elena', 'Waterloo Station, London, UK', 'pop');
-insert into trippify_participant values (default, 1, default, 'Ferja', 'North Wembley Station, Wembley, UK', 'classical');
-insert into trippify_participant values (default, 1, default, 'David', 'Alperton Station, Wembley, UK', 'soul');
-insert into trippify_participant values (default, 1, default, 'Gorka', 'St Georges Shopping Centre, Harrow, UK', 'dance');
-insert into trippify_participant values (default, 1, default, 'Andreu', 'Dartford Grammar School, Dartford, UK', 'funk');
-insert into trippify_participant values (default, 1, default, 'Carlota', 'North Kent College, Dartford, UK', 'punk');
-insert into trippify_participant values (default, 1, default, 'Victor', 'Dartford Station, Dartford, UK', 'house');
+insert into trippify_route values (default, '1,4,3,2');
+insert into trippify_route values (default, '6,5,7');
+insert into trippify_route values (default, '9,10,8');
+
+insert into trippify_participant values (default, 1, 1, 'Bernat', 'Charing Cross Station, London, UK', 'rock');
+insert into trippify_participant values (default, 1, 1, 'Albert', 'Camden Town, London, UK', 'chill');
+insert into trippify_participant values (default, 1, 1, 'Felix', 'Liverpool Street, London, UK', 'indie');
+insert into trippify_participant values (default, 1, 1, 'Elena', 'Waterloo Station, London, UK', 'pop');
+insert into trippify_participant values (default, 1, 2, 'Ferja', 'North Wembley Station, Wembley, UK', 'classical');
+insert into trippify_participant values (default, 1, 2, 'David', 'Alperton Station, Wembley, UK', 'soul');
+insert into trippify_participant values (default, 1, 2, 'Gorka', 'St Georges Shopping Centre, Harrow, UK', 'dance');
+insert into trippify_participant values (default, 1, 3, 'Andreu', 'Dartford Grammar School, Dartford, UK', 'funk');
+insert into trippify_participant values (default, 1, 3, 'Carlota', 'North Kent College, Dartford, UK', 'punk');
+insert into trippify_participant values (default, 1, 3, 'Victor', 'Dartford Station, Dartford, UK', 'house');
 
 insert into trippify_car values (default, 1, 'Tixerino', 'Renault', 'Clio', 4);
 insert into trippify_car values (default, 6, 'El bicho', 'Citroen', 'C3', 4);
