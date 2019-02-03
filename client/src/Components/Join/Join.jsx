@@ -31,7 +31,7 @@ class Join extends Component {
 
   invite(event) {
     const nTelephone = event.value.telephone;
-    axios.get(`${API}/trip?trip_id=${nTelephone}`)
+    axios.get(`${API}/share?phone_number=${nTelephone}`)
       .then((response) => {
         if (response.data.error) {
           alert(`Error sending the message`);
