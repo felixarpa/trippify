@@ -161,6 +161,35 @@ paths:
                 type: string
                 description: Error description.
 
+  /participant/playlist:
+    get:
+      tags:
+        - participant
+      summary: Retrieve the Spotify playlist according to the participant route
+      description: Invoke this endpoint to retrieve the Spotify playlist according to the participant route.
+      operationId: src.api.participant.playlist_get
+      parameters:
+        - name: participant_id
+          in: query
+          description: Specifies the participant to retrieve the playlist.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /car:
     get:
       tags:
