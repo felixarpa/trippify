@@ -3,7 +3,7 @@ import { Box,  Heading, Text } from 'grommet';
 import './Trip.css';
 import TripMap from './TripMap';
 import Music from './Music';
-import Price from './Price';
+// import Price from './Price';
 import LogoHeader from '../Headers/LogoHeader';
 import Emoji from '../Emojis/Emoji';
 import ElementList from '../ElementList/ElementList';
@@ -31,16 +31,6 @@ class Trip extends Component {
 
   componentDidMount() {
     if (this.state.status === STATUS.LOADING) {
-      // this.setState({
-      //   name: 'Fèlix',
-      //   title: 'Trippy 😏',
-      //   description: 'Drojas',
-      //   passengers: [ 'Albert', 'Bernat', 'Elena', 'Fèlix' ],
-      //   carName: 'Buga',
-      //   status: STATUS.COMPLETE
-      // });
-      // return;
-      console.log(`${API}/participant?participant_id=${this.state.userId}`);
       axios.get(`${API}/participant?participant_id=${this.state.userId}`)
         .then((res) => {
           if (res.data.error) {
@@ -62,10 +52,7 @@ class Trip extends Component {
               status: newStatus
             });
           }
-        }).catch((error) => {
-          console.log(error)
-          alert('Service unavailable right now. Please, try again later.')}
-          );
+        }).catch(error => alert('Service unavailable right now. Please, try again later.'));
     }
   }
 
@@ -83,7 +70,6 @@ class Trip extends Component {
             </Box>
           </Box>
         );
-        break;
 
       case STATUS.UNAVAILABLE:
         content = (<WaitMessage />);
@@ -93,7 +79,6 @@ class Trip extends Component {
         let mates = this.state.passengers.map((name, index) => {
           return (<ElementList key={index} text={name}></ElementList>);
         });
-
         content = (
           <div>
             <Box
@@ -116,6 +101,9 @@ class Trip extends Component {
           </div>
         );
           // <Price currency={'EUR'} total={100} price={25} />
+        break;
+
+      default:
         break;
     }
     
