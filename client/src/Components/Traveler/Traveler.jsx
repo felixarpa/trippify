@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import { Box, Text, Form, CheckBox, FormField, Select, Button, RangeInput } from 'grommet';
 import axios from 'axios';
-import FormHeader from '../Headers/FormHeader';
-import LogoHeader from '../Headers/LogoHeader';
 import Create from './Create';
 import Choose from './Choose';
-import { GENRES, API } from '../../consts';
-import './Traveler.css';
-import '../Create/Create.css';
+import { API } from '../../consts';
 
 class Traveler extends Component {
   constructor(props) {

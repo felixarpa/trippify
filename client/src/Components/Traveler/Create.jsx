@@ -52,27 +52,31 @@ class Create extends Component {
   submit(event) {
     const { name, origin, carName } = event.value;
     const { music, seats, tripId, isDriver } = this.state;
-    axios.post(`${API}/participant`, {
-      'car_available_seats': isDriver ? parseInt(seats) : 1,
-      'car_brand': '',
-      'car_model': '',
-      'car_name': carName,
-      'music_genre': music,
-      'name': name,
-      'origin': origin,
-      'trip_id': parseInt(tripId)
-    })
-      .then((response) => {
-        const userId = response.data.response.participant_id;
-        window.location.href = `${window.location.origin}/trip/${tripId}/${userId}/`;
-      })
-      .catch((error) => {
-        let message = 'Service unavailable right now. Please, try again later.';
-        if (error.response.status === 400) {
-          message = 'Invalid resquest';
-        }
-        alert(message);
-      });
+    axios.get(
+      `${API}/location/verify/location/verify?location=${encodeURI(origin)}`
+      ).then(res =>
+        axios.post(`${API}/participant`, {
+          'car_available_seats': isDriver ? parseInt(seats) : 1,
+          'car_brand': '',
+          'car_model': '',
+          'car_name': carName,
+          'music_genre': music,
+          'name': name,
+          'origin': origin,
+          'trip_id': parseInt(tripId)
+        })
+          .then((response) => {
+            const userId = response.data.response.participant_id;
+            window.location.href = `${window.location.origin}/trip/${tripId}/${userId}/`;
+          })
+          .catch((error) => {
+            let message = 'Service unavailable right now. Please, try again later.';
+            if (error.response.status === 400) {
+              message = 'Invalid resquest';
+            }
+            alert(message);
+          })
+      ).catch(error => alert('Invalid origin location'));
   }
 
   cancel(event) {
@@ -84,8 +88,7 @@ class Create extends Component {
       music,
       options,
       isDriver,
-      seats,
-      tripId
+      seats
     } = this.state;
 
     let car = (<Box/>);
