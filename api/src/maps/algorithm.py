@@ -27,6 +27,7 @@ def _compute_distances(trip_id):
             if simple_route:
                 d = simple_route.get('response', {}).get('route', [{}])[0].get('summary', {}).get('travelTime', -1)
                 distances[driver.id][passenger.id] = d
+                log.info('Distance time (sec) between drive {} and passenger {}: {}'.format(driver.id, passenger.id, d))
             else:
                 distances[driver.id][passenger.id] = -1
     return distances
@@ -74,6 +75,12 @@ def _update_database(groups, trip_id):
     routes = db_session().query(Route).filter(
         Route.id == Participant.route_id).filter(
         Participant.trip_id == trip_id).all()
+
+    participants = db_session().query(Participant).filter_by(trip_id=trip_id).all()
+    for participant in participants:
+        participant.route_id = None
+        db_session().flush()
+
     for route in routes:
         db_session().delete(route)
     db_session().flush()
