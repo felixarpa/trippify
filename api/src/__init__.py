@@ -4,11 +4,19 @@ TRIPPIFY_DB_DB = 'trippify'
 TRIPPIFY_DB_HOST = 'localhost'
 TRIPPIFY_DB_PORT = 5432
 
+SPOTIFY_API_URL = 'https://api.spotify.com/v1/recommendations'
+SPOTIFY_API_LOGIN = 'https://accounts.spotify.com/api/token'
+SPOTIFY_API_AUTH = 'MThlMGY2ZDNhODE4NDAwODgyYjAxMWE2YTYxZWI0Y2E6N2ExZjg2MjU2NGJiNDExNmIwOTJhZGI5NmUyYTcxYTg='
+SPOTIFY_API_SEED = '0c6xIDDpzE81m2q797ordA'
 
 __all__ = [
     'TRIPPIFY_DB_USER',
     'TRIPPIFY_DB_PASSWORD',
     'TRIPPIFY_DB_DB',
     'TRIPPIFY_DB_HOST',
-    'TRIPPIFY_DB_PORT'
+    'TRIPPIFY_DB_PORT',
+    'SPOTIFY_API_URL',
+    'SPOTIFY_API_LOGIN',
+    'SPOTIFY_API_AUTH',
+    'SPOTIFY_API_SEED'
 ]

@@ -5,4 +5,4 @@ uWSGI
 uwsgitop
 SQLAlchemy
 psycopg2-binary
-request
+requests
