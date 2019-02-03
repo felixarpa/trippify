@@ -7,7 +7,6 @@ General components
 
 .mainGrid {
     width: inherit;
-
 }
 
 h1 {
@@ -81,7 +80,23 @@ Third-part adpated
     background-image: url('IMG_6738.JPG');
     background-repeat  : 'no-repeat';
     background-position: 'center';
-    background-size: 100% 110%;
+    background-size: 100% auto;
     opacity: 0.5;
     z-index: -9999;
 }
+
+
+@media only screen and (max-width: 600px) {
+
+
+    .background {
+        background-size: auto 100%;
+    }
+
+    .main-class {
+        padding: 0.5em;
+        width: min-content;
+        height: -webkit-fill-available;
+    }
+
+  }

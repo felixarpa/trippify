@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Form, FormField, Select, Button } from 'grommet';
 import './Create.css';
-import '../Base/Base.css';
 import LogoHeader from '../Headers/LogoHeader';
 import FormHeader from '../Headers/FormHeader';
 import { CURR } from '../../consts';
