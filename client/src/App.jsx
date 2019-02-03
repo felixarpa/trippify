@@ -4,6 +4,7 @@ import Main from './Components/Main/Main';
 import Create from './Components/Create/Create';
 import Join from './Components/Join/Join';
 import Traveler from './Components/Traveler/Traveler';
+import Trip from './Components/Trip/Trip';
 
 
 class App extends Component {
@@ -12,9 +13,9 @@ class App extends Component {
       <Router>
         <div>
           <Route path='/' exact component={Main} />
-          <Route path='/create/' component={Create} />
-          <Route path='/join/' component={Join} />
-          <Route path='/trip/:tripId' component={Traveler} />
+          <Route path='/create/' exact component={Create} />
+          <Route path='/trip/:tripId' exact component={Traveler} />
+          <Route path='/trip/:tripId/:userId' exact component={Trip} />
         </div>
       </Router>
     );
