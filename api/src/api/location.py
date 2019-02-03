@@ -9,9 +9,9 @@ def verify_get(location):
         # maps_response = maps.get_coordinates(location)
         maps_response = here.get_coordinates(location)
         if maps_response:
-            return jsonify(error=True, response=maps_response), 200
+            return jsonify(error=False, response=maps_response), 200
         else:
-            return jsonify(error=True, message='Location not found.'), 200
+            return jsonify(error=True, message='Location not found.'), 400
     except Exception as e:
         log.error('Unexpected error in GET/location/verify: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
