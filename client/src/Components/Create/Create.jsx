@@ -5,6 +5,8 @@ import '../Base/Base.css';
 import LogoHeader from '../Headers/LogoHeader';
 import FormHeader from '../Headers/FormHeader';
 import { CURR } from '../../consts';
+import axios from 'axios';
+import { API } from '../../consts';
 
 const OPTIONS = CURR;
 
@@ -13,7 +15,7 @@ class Create extends Component {
     super(props);
 
     this.state = {
-      value: [],
+      value: '',
       options: OPTIONS
     };
 
@@ -25,7 +27,6 @@ class Create extends Component {
   selectCurrency(event) {
     this.setState({
       value: event.value,
-      selected: event.selected,
       options: OPTIONS
     });
   }
@@ -36,16 +37,30 @@ class Create extends Component {
   }
 
   submit(event) {
-    // Post these values:
-    // - { title, description, destination }: event.value
-    // - currency: this.state.value
-    // console.log(event.value);
-    const tripId = 'ABC123';
-    window.location.href = `${window.location.origin}/trip/${tripId}`;
+    const { title, description, destination } = event.value;
+    const currency = this.state.value;
+    axios.post(`${API}/trip`, {
+        title: title,
+        description: description,
+        destination: destination,
+        currency: currency
+      })
+      .then((response) => {
+        console.log(response.data);
+        const tripId = response.data.response.trip_id;
+        window.location.href = `${window.location.origin}/trip/${tripId}`;
+      })
+      .catch((error) => {
+        let message = 'Service unavailable right now. Please, try again later.';
+        if (error.response.status === 400) {
+          message = 'Invalid resquest';
+        }
+        alert(message);
+      });
   }
 
   render() {
-    const { options, selected, value } = this.state;
+    const { options, value } = this.state;
 
     return (
 
@@ -93,7 +108,6 @@ class Create extends Component {
                   label='Currency'>
                   <Select
                     multiple={false}
-                    selected={selected}
                     value={value}
                     placeholder='Select your currency'
                     onChange={this.selectCurrency}
@@ -104,7 +118,8 @@ class Create extends Component {
                 <Box direction='row' justify='between' margin={{ top: 'large' }}>
                   <Button 
                     label='Cancel' 
-                    color='accent-1'  
+                    color='accent-1'
+                    onClick={() => window.location.href = `${window.location.origin}/`}
                   />
                   <Button 
                     type='submit' 

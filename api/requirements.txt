@@ -5,4 +5,5 @@ uWSGI
 uwsgitop
 SQLAlchemy
 psycopg2-binary
+requests
 googlemaps
