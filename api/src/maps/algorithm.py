@@ -6,6 +6,7 @@ from src.db.sqlalchemy import db_session
 from src.maps import here
 from src.model.car import Car
 from src.model.participant import Participant
+from src.model.route import Route
 from src.util import log
 
 
@@ -69,11 +70,33 @@ def _sort_by_value(groups):
     return groups
 
 
+def _update_database(groups, trip_id):
+    routes = db_session().query(Route).filter(
+        Route.id == Participant.route_id).filter(
+        Participant.trip_id == trip_id).all()
+    for route in routes:
+        db_session().delete(route)
+    db_session().flush()
+
+    for group in groups.values():
+        route = Route(route=','.join([str(item[0]) for item in group]))
+        db_session().add(route)
+        db_session().flush()
+        if route.id:
+            for item in group:
+                participant = db_session().query(Participant).filter_by(id=item[0]).first()
+                if participant:
+                    participant.route_id = route.id
+                    db_session().flush()
+    db_session().commit()
+
+
 def update_routes(trip_id):
     try:
         distances = _compute_distances(trip_id)
         groups = _group_by_driver(distances, trip_id)
         groups = _sort_by_value(groups)
+        _update_database(groups, trip_id)
         return groups
     except Exception as e:
         log.error('Unexpected error updating routes: {}'.format(e))
