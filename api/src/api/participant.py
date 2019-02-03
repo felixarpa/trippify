@@ -80,7 +80,14 @@ def playlist_get(participant_id):
         participant = db_session().query(Participant).filter_by(id=participant_id).first()
         if not participant:
             return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
-        playlist = songs.get_album(participant.music_genre)
+        if participant.route_id:
+            playlist = songs.get_album([participant.music_genre])
+        else:
+            genre_list = set()
+            participants = db_session().query(Participant).filter_by(route_id=participant.route_id).all()
+            for participant in participants:
+                genre_list.add(participant.music_genre)
+            playlist = songs.get_album(list(genre_list))
         if playlist:
             return jsonify(error=False, response=playlist), 200
         else:
