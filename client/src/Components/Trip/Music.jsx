@@ -17,7 +17,7 @@ class Music extends Component {
 
   componentDidMount() {
     if (this.state.url === undefined) {
-      axios.get(`${API}/participant/playlist/${this.props.userId}`)
+      axios.get(`${API}/participant/playlist?participant_id=${this.props.userId}`)
         .then((res) => {
           if (res.data.error) {
             alert('This user does not exists');
@@ -47,11 +47,9 @@ class Music extends Component {
         </Text>
         <Text margin={{top:'small'}}>This is the generate list to listen while travelling:</Text>
         <Box width='large' align='center' pad='medium'>
-          <Box direction='row' pad='small' round='small' background='neutral-1'>
-            <Link to={url}>
+          <Box direction='row' pad='small' round='small' background='neutral-1' onClick={() =>  window.location.href=url}>
               <img src={require('./spotify.png')} width='60em' height='60em'></img>
               <Text alignSelf='center' margin='small'><b> LISTEN PLAYLIST</b></Text>
-            </Link>
           </Box>
         </Box>
       </Box>

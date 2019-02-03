@@ -14,7 +14,15 @@ class TripMap extends Component {
         <Text size='large'>
           <b>MAP</b>
         </Text>
-        <Box><div className='maps'/></Box>
+        <Box><div
+         className='maps'/>
+         <img src={require('./photo.png')} width='700em' height='auto'
+         onClick={() => {
+        console.log("click");
+        window.location.href = `${window.location.origin}/map.html`;
+        }}
+         ></img>
+         </Box>
       </Box>
     );
   }
