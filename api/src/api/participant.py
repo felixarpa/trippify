@@ -6,6 +6,7 @@ from src.model.trip import Trip
 from src.model.car import Car
 from src.util import log
 from src.spotify import songs
+from src.maps.algorithm import update_routes
 
 
 def get(participant_id):
@@ -55,6 +56,8 @@ def post():
                 if not car.id:
                     return jsonify(error=True, message='Error while creating the new car.'), 400
             db_session().commit()
+
+            update_routes(body['trip_id'])
             return jsonify(error=False, response=dict(participant_id=participant.id)), 200
         else:
             return jsonify(error=True, message='Error while creating the new participant.'), 400

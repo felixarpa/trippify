@@ -108,7 +108,3 @@ def update_routes(trip_id):
     except Exception as e:
         log.error('Unexpected error updating routes: {}'.format(e))
         return None
-
-
-if __name__ == '__main__':
-    update_routes(1)
