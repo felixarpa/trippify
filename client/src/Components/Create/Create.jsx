@@ -39,23 +39,27 @@ class Create extends Component {
   submit(event) {
     const { title, description, destination } = event.value;
     const currency = this.state.value;
-    axios.post(`${API}/trip`, {
-        title: title,
-        description: description,
-        destination: destination,
-        currency: currency
-      })
-      .then((response) => {
-        const tripId = response.data.response.trip_id;
-        window.location.href = `${window.location.origin}/trip/${tripId}`;
-      })
-      .catch((error) => {
-        let message = 'Service unavailable right now. Please, try again later.';
-        if (error.response.status === 400) {
-          message = 'Invalid resquest';
-        }
-        alert(message);
-      });
+    axios.get(
+      `${API}/location/verify/location/verify?location=${encodeURI(destination)}`
+      ).then(res =>
+        axios.post(`${API}/trip`, {
+            title: title,
+            description: description,
+            destination: destination,
+            currency: currency
+          })
+          .then((response) => {
+            const tripId = response.data.response.trip_id;
+            window.location.href = `${window.location.origin}/trip/${tripId}`;
+          })
+          .catch((error) => {
+            let message = 'Service unavailable right now. Please, try again later.';
+            if (error.response.status === 400) {
+              message = 'Invalid resquest';
+            }
+            alert(message);
+          })
+      ).catch(error => alert('Invalid destination location'));
   }
 
   render() {

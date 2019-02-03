@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Box, Text, Form, CheckBox, FormField, Select, Button, RangeInput } from 'grommet';
-import axios from 'axios';
+import { Box, Text, Form, FormField, Select, Button } from 'grommet';
 import LogoHeader from '../Headers/LogoHeader';
 import Create from './Create';
 import './Traveler.css';
@@ -30,7 +29,7 @@ class Choose extends Component {
 
   submit(event) {
     const { user, options, tripId } = this.state;
-    const selected = options.filter(x => x.name == user)[0];
+    const selected = options.filter(x => x.name === user)[0];
     window.location.href = `${window.location.origin}/trip/${tripId}/${selected.id}`
   }
 
