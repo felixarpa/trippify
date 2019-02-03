@@ -6,13 +6,24 @@ from src.model.trip import Trip
 from src.model.car import Car
 from src.util import log
 from src.spotify import songs
+from src.maps.algorithm import update_routes
 
 
 def get(participant_id):
     try:
         participant = db_session().query(Participant).filter_by(id=participant_id).first()
         if participant:
-            return jsonify(error=False, response=participant.serialize()), 200
+            response = participant.serialize()
+            if participant.route_id:
+                car_mates = db_session().query(Participant).filter_by(route_id=participant.route_id).all()
+                car_mates_name = []
+                for mate in car_mates:
+                    car_mates_name.append(mate.name)
+                car = db_session().query(Car).filter(
+                    Car.participant_id == Participant.id).filter(
+                    Participant.route_id == participant.route_id).first()
+                response['car'] = dict(passengers=car_mates_name, car_name=car.name)
+            return jsonify(error=False, response=response), 200
         else:
             return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
     except Exception as e:
@@ -55,6 +66,8 @@ def post():
                 if not car.id:
                     return jsonify(error=True, message='Error while creating the new car.'), 400
             db_session().commit()
+
+            update_routes(body['trip_id'])
             return jsonify(error=False, response=dict(participant_id=participant.id)), 200
         else:
             return jsonify(error=True, message='Error while creating the new participant.'), 400
@@ -77,7 +90,14 @@ def playlist_get(participant_id):
         participant = db_session().query(Participant).filter_by(id=participant_id).first()
         if not participant:
             return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
-        playlist = songs.get_album(participant.music_genre)
+        if participant.route_id:
+            playlist = songs.get_album([participant.music_genre])
+        else:
+            genre_list = set()
+            participants = db_session().query(Participant).filter_by(route_id=participant.route_id).all()
+            for participant in participants:
+                genre_list.add(participant.music_genre)
+            playlist = songs.get_album(list(genre_list))
         if playlist:
             return jsonify(error=False, response=playlist), 200
         else:
