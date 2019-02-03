@@ -5,6 +5,7 @@ from src.model.participant import Participant
 from src.model.trip import Trip
 from src.model.car import Car
 from src.util import log
+from src.spotify import songs
 
 
 def get(participant_id):
@@ -68,4 +69,19 @@ def trip_get(trip_id):
         return jsonify(error=False, response=[participant.serialize() for participant in participants]), 200
     except Exception as e:
         log.error('Unexpected error in GET/participant/trip: {}'.format(e))
+        return jsonify(error=True, message='Unexpected error.'), 400
+
+
+def playlist_get(participant_id):
+    try:
+        participant = db_session().query(Participant).filter_by(id=participant_id).first()
+        if not participant:
+            return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
+        playlist = songs.get_album(participant.music_genre)
+        if playlist:
+            return jsonify(error=False, response=playlist), 200
+        else:
+            return jsonify(error=True, message='No playlist found.'), 400
+    except Exception as e:
+        log.error('Unexpected error in GET/participant/playlist: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
