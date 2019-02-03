@@ -13,6 +13,7 @@ class App extends Component {
       <Router>
         <div>
           <Route path='/' exact component={Main} />
+          <Route path='/join/' exact component={Join} />
           <Route path='/create/' exact component={Create} />
           <Route path='/trip/:tripId' exact component={Traveler} />
           <Route path='/trip/:tripId/:userId' exact component={Trip} />
