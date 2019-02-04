@@ -6,7 +6,8 @@ General components
 **/  
 
 .mainGrid {
-    padding: 5rem;
+    width: inherit;
+
 }
 
 h1 {
@@ -62,3 +63,25 @@ Third-part adpated
 }
 
 
+.main-class {
+    padding: 5rem;
+    right: 0;
+    left: 0;
+    width: initial;
+    height: initial;
+    position: absolute;
+}
+
+.background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    background-image: url('IMG_6738.JPG');
+    background-repeat  : 'no-repeat';
+    background-position: 'center';
+    background-size: 100% 110%;
+    opacity: 0.5;
+    z-index: -9999;
+}
