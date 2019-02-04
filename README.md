@@ -1,5 +1,12 @@
 # Trippify
 
+[![HitCount](http://hits.dwyl.io/felixarpa/trippify.svg)](http://hits.dwyl.io/felixarpa/trippify)
+[![GitHub stars](https://img.shields.io/github/stars/felixarpa/trippify.svg)](https://GitHub.com/felixarpa/trippify/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/felixarpa/trippify.svg)](https://GitHub.com/felixarpa/trippify/network/)
+[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/felixarpa/trippify.svg)](https://github.com/felixarpa/trippify)
+[![GitHub contributors](https://img.shields.io/github/contributors/felixarpa/trippify.svg)](https://GitHub.com/felixarpa/trippify/graphs/contributors/)
+[![GitHub license](https://img.shields.io/github/license/felixarpa/trippify.svg)](https://github.com/felixarpa/trippify/blob/master/LICENSE)
+
 🚗 The best way to plan your trips
 
 ## Requirements

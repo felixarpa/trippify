@@ -97,11 +97,11 @@ ALTER TABLE trippify_car
     OWNER to trippify;
 
 -- Insert values
-insert into trippify_trip values (1, 'Royal Hackaway 2019', 'Best hackathon ever', 'Windsor Building, University in Egham, England', 'EUR');
+insert into trippify_trip values (default, 'Royal Hackaway 2019', 'Best hackathon ever', 'Windsor Building, University in Egham, England', 'EUR');
 
-insert into trippify_participant values (1, 1, 'Bernat', 'Big Ben', 'Rock');
-insert into trippify_participant values (2, 1, 'Albert', 'Candem Town', 'Pop');
-insert into trippify_participant values (3, 1, 'Felix', 'Liverpool Street, London', 'Punk');
-insert into trippify_participant values (4, 1, 'Elena', 'Waterloo Station, London', 'Metal');
+insert into trippify_participant values (default, 1, 'Bernat', 'Big Ben', 'Rock');
+insert into trippify_participant values (default, 1, 'Albert', 'Candem Town', 'Pop');
+insert into trippify_participant values (default, 1, 'Felix', 'Liverpool Street, London', 'Punk');
+insert into trippify_participant values (default, 1, 'Elena', 'Waterloo Station, London', 'Metal');
 
-insert into trippify_car values (1, 1, 'Tixerino', 'Renault', 'Clio', 4);
+insert into trippify_car values (default, 1, 'Tixerino', 'Renault', 'Clio', 4);
