@@ -24,7 +24,7 @@ class Main extends Component {
       <div className='main-class'>
 
         <div className='background' />
-            <Grid
+        <Grid
             className='mainGrid'
             columns={['fill']}
             rows={['medium', 'small']}

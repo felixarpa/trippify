@@ -1,10 +1,8 @@
 import React from 'react';
-import { Box, Text } from 'grommet';
+import './Headers.css'
 
 const LogoHeader = () => (
-  <Box>
-    <Text>LOGO</Text>
-  </Box>
+    <p className='logo'> trippify!</p>
 );
 
 export default LogoHeader;
