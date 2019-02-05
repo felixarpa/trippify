@@ -13,7 +13,17 @@ def get(participant_id):
     try:
         participant = db_session().query(Participant).filter_by(id=participant_id).first()
         if participant:
-            return jsonify(error=False, response=participant.serialize()), 200
+            response = participant.serialize()
+            if participant.route_id:
+                car_mates = db_session().query(Participant).filter_by(route_id=participant.route_id).all()
+                car_mates_name = []
+                for mate in car_mates:
+                    car_mates_name.append(mate.name)
+                car = db_session().query(Car).filter(
+                    Car.participant_id == Participant.id).filter(
+                    Participant.route_id == participant.route_id).first()
+                response['car'] = dict(passengers=car_mates_name, car_name=car.name)
+            return jsonify(error=False, response=response), 200
         else:
             return jsonify(error=True, message='No participant found with {} as id.'.format(participant_id)), 400
     except Exception as e:

@@ -18,6 +18,8 @@ tags:
     description: endpoint for managing cars.
   - name: location
     description: endpoint for managing location stuff.
+  - name: route
+    description: endpoint for managing routes.
 
 paths:
   /trip:
@@ -230,6 +232,64 @@ paths:
         - name: location
           in: query
           description: Specifies the string location.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /route:
+    get:
+      tags:
+        - route
+      summary: Retrieve the route information
+      description: Invoke this endpoint to get the route information of a given participant.
+      operationId: src.api.route.get
+      parameters:
+        - name: participant_id
+          in: query
+          description: Specifies the participant.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Trippify API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /share:
+    get:
+      tags:
+        - share
+      summary: Share the app to an specific phone number
+      description: Invoke this endpoint to send Trippify information to a given phone number through a SMS.
+      operationId: src.api.share.get
+      parameters:
+        - name: phone_number
+          in: query
+          description: Specifies the phone number.
           required: true
           schema:
             type: string
