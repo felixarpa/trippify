@@ -114,7 +114,7 @@ class Trip extends Component {
               <Text size='large'>
                 <b>MAP</b>
               </Text>
-              <Box><div className='maps'/></Box>
+              <Box></Box>
             </Box>
 
             <Box className='not-yet'

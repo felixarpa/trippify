@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Box, Form, Text, FormField, Button } from 'grommet';
 import LogoHeader from '../Headers/LogoHeader';
+import '../Create/Create.css'
 import axios from 'axios';
 import { API } from '../../consts';
 
@@ -35,6 +36,7 @@ class Join extends Component {
               <Text className='title-create'>Join an existing Trip using its ID!</Text>
           </Box>
           <Box width='large'>
+            <Box className='margin'/>
             <Form onSubmit={this.submit}>
               <FormField
                 className='input-form'
@@ -44,7 +46,7 @@ class Join extends Component {
                 required
               />
               <Box className='margin'/>
-              <Box direction='row' justify='between' margin={{ top: 'large' }}>
+              <Box direction='row' justify='between' margin={{ top: 'medium' }}>
                 <Button 
                   className='white-text-button'
                   label='Cancel' 
@@ -58,7 +60,43 @@ class Join extends Component {
                   color='accent-1' 
                   primary />
               </Box>
+            
             </Form>
+          </Box>
+          <Box className='margin'/>
+          <Box background='#3B5479' pad='1.5px' width='large'></Box>
+          <Box className='margin'/>
+          <Box width='large'>
+            <Box className='invite'
+                  width='medium'
+                  direction='row'
+                  border={{ color: 'accent-1', size: 'small' }}
+                  margin={{top:'small', bottom:'large'}}
+                  pad="small" 
+                  round='small'
+                  align='right'>
+                <Box>
+                <Form onSubmit={this.invite}>
+                  <FormField
+                        className='input-form'
+                        name='telephone'
+                        label='Do you want to share with someone?'
+                        placeholder='Telephone of a friend'
+                      />
+                </Form>
+              </Box>
+
+              <Box>
+                <Button 
+                    className='white-text-button'
+                    label='Invite' 
+                    color='accent-1'
+                    width='small'
+                    pad='0'
+                    primary
+                  />
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Box>
