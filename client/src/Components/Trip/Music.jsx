@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Link} from 'react-router-dom';
 import { Box, Text } from 'grommet';
 import { API } from '../../consts';
+import axios from 'axios';
 import './Trip.css';
 
 class Music extends Component {
@@ -15,7 +16,7 @@ class Music extends Component {
 
 
   componentDidMount() {
-    if (this.state.url == undefined) {
+    if (this.state.url === undefined) {
       axios.get(`${API}/participant/playlist/${this.props.userId}`)
         .then((res) => {
           if (res.data.error) {
