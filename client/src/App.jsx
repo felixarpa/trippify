@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Main from './Components/Main/Main';
 import Create from './Components/Create/Create';
+import Join from './Components/Join/Join';
 import Traveler from './Components/Traveler/Traveler';
 import Trip from './Components/Trip/Trip';
 
