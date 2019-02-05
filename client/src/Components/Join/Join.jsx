@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Form, Text, FormField, Button } from 'grommet';
-import Logo from '../Logo/Logo';
+import Logo from '../Headers/LogoHeader';
 import axios from 'axios';
 import { API } from '../../consts';
 
