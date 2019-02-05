@@ -53,6 +53,7 @@ class Join extends Component {
 
   render() {
 
+    const {successful} = this.state;
 
     return (
       <Box direction='column'>
@@ -90,7 +91,6 @@ class Join extends Component {
                   color='accent-1' 
                   primary />
               </Box>
-            
             </Form>
           </Box>
           <Box className='margin'/>
@@ -105,7 +105,7 @@ class Join extends Component {
               pad="small" 
               round='small'
               align='right'>
-                {this.state.successful}
+                {successful}
                 <Form onSubmit={this.invite}>
                   <FormField
                         className='input-form'
