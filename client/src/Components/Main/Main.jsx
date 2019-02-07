@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Box, Grid, Heading, Button } from 'grommet';
-import './Main.css';
-import { New, Group } from 'grommet-icons';
+import { Box, Grid, Button } from 'grommet';
+import './main.css';
 
 class Main extends Component {
   constructor(props) {
@@ -27,27 +26,47 @@ class Main extends Component {
         gap='none'
         areas={[
           { name: 'header', start: [0, 0], end: [1, 0] },
-          { name: 'create', start: [0, 1], end: [0, 1] },
-          { name: 'join', start: [1, 1], end: [1, 1] },
+          { name: 'options', start: [0, 1], end: [1, 1] },
         ]}
       >
-        <Box gridArea='header'>
+        <Box className ='box-header' gridArea='header'>
           <h1>Hello,</h1>
-          <h2>welcome to <div className='Name'>trippify</div></h2>
+          <h2>welcome to 
+              <div className='name'> trippify!</div>
+          </h2>
+          <h3>Please, select your requests:</h3>
         </Box>
-        <Box gridArea='create'>
-          <Button
-            icon={<New />}
-            label='CREATE'
-            onClick={this.create}
-          />
-        </Box>
-        <Box gridArea='join'>
-          <Button
-            icon={<Group />}
-            label='JOIN'
-            onClick={this.join}
-          />
+        <Box 
+          direction="row"
+          fill='horizontal'
+          className='boxButton'
+          gridArea='options'
+          alignContent = 'center'
+        >
+            <Box 
+              fill='horizontal'
+            >
+                <Button 
+                className='mainButton'
+                color='accent-1'
+                label='CREATE'
+                onClick={this.create}
+              />
+            </Box>
+            
+            <Box width='xsmall'/>
+             
+            <Box 
+              fill='horizontal'
+            >
+                  <Button
+                  className='mainButton'
+                  color='accent-1'
+                  label='JOIN'
+                  onClick={this.join}
+                />
+            </Box>
+
         </Box>
       </Grid>
     );

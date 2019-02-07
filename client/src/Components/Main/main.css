@@ -1,0 +1,59 @@
+
+
+/**
+
+General components
+**/  
+h1 {
+    font-size: 6em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 4em;
+    margin: 0;
+}
+
+h3{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/**
+
+Layouts
+
+**/
+
+.box-header {
+    font-family: 'Righteous', cursive;
+    padding-top: 1.52rem;
+    padding-left: 1.52rem;
+    width: fit-content;
+}
+
+
+/**
+    Components 
+**/
+
+.name {
+    color:#69D9B8;
+    display: inline;
+}
+
+/**
+Third-part adpated
+**/
+
+.boxButton {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+.mainButton {
+    color: white;
+    font-size: 1.5rem;
+    height: 3.5rem;
+}
+
+
