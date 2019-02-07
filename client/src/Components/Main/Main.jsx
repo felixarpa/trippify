@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Box, Grid, Heading, Button } from 'grommet';
+import './Main.css';
 import { New, Group } from 'grommet-icons';
 
 class Main extends Component {
@@ -31,7 +32,8 @@ class Main extends Component {
         ]}
       >
         <Box gridArea='header'>
-          <Heading margin="none">TRIPPIFY</Heading>
+          <h1>Hello,</h1>
+          <h2>welcome to <div className='Name'>trippify</div></h2>
         </Box>
         <Box gridArea='create'>
           <Button
