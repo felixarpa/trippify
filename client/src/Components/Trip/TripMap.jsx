@@ -9,19 +9,24 @@ class TripMap extends Component {
         width='large'
         border={{ color: 'accent-1', size: 'small' }}
         margin={{top:'small', bottom:'large'}}
-        pad="medium" 
+        pad="medium"
         round='small'>
         <Text size='large'>
           <b>MAP</b>
         </Text>
-        <Box><div
-         className='maps'/>
-         <img src={require('./photo.png')} width='700em' height='auto'
-         onClick={() => {
-        console.log("click");
-        window.location.href = `${window.location.origin}/map.html`;
-        }}
-         ></img>
+        <Box>
+          <div className='maps'/>
+          <img
+            // TODO: Change for some generic image
+            src={require('./photo.png')}
+            width='700em'
+            height='auto'
+            alt=''
+            onClick={() => {
+              // TODO: Run query to api and get origin and destination. Then put it in the Query.
+              window.location.href = `${window.location.origin}/map.html`;
+            }
+          } />
          </Box>
       </Box>
     );
