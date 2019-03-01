@@ -42,6 +42,7 @@
       }
 
       function simularAPI() {
+        console.log(JSON.parse(window.location.search.split('?route=')[1]));
         return {
           origin: "Alperton Station, Wembley, UK",
           destination: "Windsor Building, University in Egham, England",

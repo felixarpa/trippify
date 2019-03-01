@@ -1,9 +1,36 @@
 import React, { Component } from 'react';
 import { Box, Text } from 'grommet';
 import './Trip.css';
+import axios from 'axios';
+import { API } from '../../consts';
 
 class TripMap extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fetchComplete: false,
+      route: {},
+    };
+  }
+
+  componentDidMount() {
+    console.log('component did mount');
+    if (!this.state.fetchComplete) {
+      axios.get(`${API}/route?participant_id=${this.props.userId}`)
+        .then((response) => {
+          console.log(response.data.response);
+          this.setState({
+            fetchComplete: true,
+            route: response.data.response,
+          });
+        })
+        .catch(_ => alert('Oops! something went wrong'));
+    }
+  }
+
   render() {
+    const { fetchComplete, route } = this.state;
     return(
       <Box className='not-yet'
         width='large'
@@ -23,8 +50,9 @@ class TripMap extends Component {
             height='auto'
             alt=''
             onClick={() => {
-              // TODO: Run query to api and get origin and destination. Then put it in the Query.
-              window.location.href = `${window.location.origin}/map.html`;
+              if (fetchComplete) {
+                window.location.href = `${window.location.origin}/map.html?route=${JSON.stringify(route)}`;
+              }
             }
           } />
          </Box>

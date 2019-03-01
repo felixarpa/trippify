@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link} from 'react-router-dom';
 import { Box, Text } from 'grommet';
 import { API } from '../../consts';
 import axios from 'axios';
@@ -40,7 +39,7 @@ class Music extends Component {
             width='large'
             border={{ color: 'accent-1', size: 'small' }}
             margin={{top:'small', bottom:'large'}}
-            pad="medium" 
+            pad="medium"
             round='small'>
         <Text size='large'>
           <b>MUSIC</b>

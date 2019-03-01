@@ -3,7 +3,6 @@ import { Box,  Heading, Text } from 'grommet';
 import './Trip.css';
 import TripMap from './TripMap';
 import Music from './Music';
-// import Price from './Price';
 import LogoHeader from '../Headers/LogoHeader';
 import Emoji from '../Emojis/Emoji';
 import ElementList from '../ElementList/ElementList';
@@ -77,7 +76,7 @@ class Trip extends Component {
 
       case STATUS.COMPLETE:
         let mates = this.state.passengers.map((name, index) => {
-          return (<ElementList key={index} text={name}></ElementList>);
+          return (<ElementList key={index} text={name} />);
         });
         content = (
           <div>
@@ -86,7 +85,7 @@ class Trip extends Component {
               width='large'
               border={{ color: 'accent-1', size: 'small' }}
               margin={{top:'small', bottom:'large'}}
-              pad="medium" 
+              pad="medium"
               round='small'>
               <Text size='medium'>
                 You are part of <b>{this.state.carName}</b> car<br/><br/>
@@ -106,7 +105,7 @@ class Trip extends Component {
       default:
         break;
     }
-    
+
     const { title, name, description } = this.state;
 
     return (
@@ -115,7 +114,7 @@ class Trip extends Component {
         <Box align='center' justify='center' background='light-1'>
           <Box align='center' className='header-description' width='xxlarge' pad={{top:'medium', bottom:'medium'}}>
               <Heading textAlign='center' truncate={true}>{title}</Heading>
-              <Heading textAlign='center' truncate={true} level='3'>{description}</Heading>            
+              <Heading textAlign='center' truncate={true} level='3'>{description}</Heading>
           </Box>
           <Box width='large' pad={{top:'small', bottom:'medium'}}>
               <Text size='large' >Hello, <b>{name}</b> <Emoji symbol="👋" label="hello"/></Text>
